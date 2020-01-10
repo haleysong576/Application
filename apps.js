@@ -9,7 +9,16 @@ import InfoMenuScreen from './screens/4Menus/InfoMenuScreen';
 import SettingScreen from './screens/4Menus/SettingScreen';
 import DailyTrackerScreen from './screens/4Menus/DailyTrackerScreen';
 import RecipeScreen from './screens/4Menus/RecipeScreen';
-import Chicken from './screens/Recipes/Chicken';
+import DailyInput from'./screens/4Menus/DailyInput';
+import Notification from './screens/4Menus/Notificaton';
+import Password from './screens/4Menus/Password';
+import ViewAminoAcids from './screens/4Menus/ViewAminoAcids';
+import PasswordBack from './screens/4Menus/PasswordBack';
+import Chili from './screens/Recipes/Chili';
+import Bibimbop from './screens/Recipes/Bibimbop';
+import OatmealPancakes from './screens/Recipes/OatmealPancakes';
+import VeganBurger from './screens/Recipes/VeganBurger';
+import VegeterianBurritoBowls from './screens/Recipes/VegeterianBurritoBowls'
 
 class HomeScreen extends Component{
   static navigationOptions = {
@@ -29,6 +38,8 @@ class HomeScreen extends Component{
   onPressButton() {
     if (this.checkLogin() == true){
       this.props.navigation.navigate('Main');
+      this.userInput.clear();
+      this.pwInput.clear();
     }
     else {
       console.warn("Login Failed")
@@ -39,8 +50,8 @@ class HomeScreen extends Component{
     return (
       <View style={styles.container}>
         <Text style = {styles.title}>Amino Tracker</Text>
-        <TextInput style = {styles.label} placeholder="Username" underlineColorAndroid = {'gray'} onChangeText = {text => this.setState ({username: text })}/>
-        <TextInput style = {styles.label} placeholder="Password" underlineColorAndroid = {'gray'} secureTextEntry={true} onChangeText = {text => this.setState ({password: text })}/>
+        <TextInput ref={input => { this.userInput = input }} style = {styles.label} placeholder="Username" underlineColorAndroid = {'gray'} onChangeText = {text => this.setState ({username: text })}/>
+        <TextInput ref={input => { this.pwInput = input }} style = {styles.label} placeholder="Password" underlineColorAndroid = {'gray'} secureTextEntry={true} onChangeText = {text => this.setState ({password: text })}/>
         <View style = {styles.button}>
           <Button 
           onPress = {() => this.onPressButton()}
@@ -63,7 +74,16 @@ const RootStack = createStackNavigator(
     Settings: {screen: SettingScreen},
     DailyTracker: {screen: DailyTrackerScreen},    
     Recipe: {screen: RecipeScreen},
-    Chicken: {screen: Chicken},
+    Chili: {screen: Chili},
+    DailyInput: {screen: DailyInput},
+    Notification: {screen: Notification},
+    Password: {screen: Password},
+    ViewAminoAcids: {screen: ViewAminoAcids},
+    PasswordBack: {screen: PasswordBack},
+    VeganBurger: {screen: VeganBurger},
+    VegeterianBurritoBowls: {screen: VegeterianBurritoBowls},
+    Bibimbop: {screen: Bibimbop},
+    OatmealPancakes: {screen: OatmealPancakes}
   },
   
 );
